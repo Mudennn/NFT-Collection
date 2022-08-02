@@ -6,7 +6,7 @@ import Web3Modal from "web3modal";
 import {abi, NFT_CONTRACT_ADDRESS} from "../constants"
 
 export default function Home() {
-  //walletConnected keep track of whether the user's wallet is connected or not
+  //walletConnected keep track of whether the users wallet is connected or not
   const [walletConnected, setWalletConnected] = useState(false);
   //presaleStarted keep track of whether the preesale has started or not
   const [presaleStarted, setPresaleStarted] = useState(false);
@@ -26,7 +26,7 @@ export default function Home() {
    */
   const presaleMint = async () => {
     try {
-      //We need a Signer here since this is a 'write' transaction.
+      //We need a Signer here since this is a write transaction.
       const signer = await getProviderOrSigner(true);
       //Create a new instance of the Contract with a Signer, which allows
       //update methods
@@ -38,7 +38,7 @@ export default function Home() {
       //call the presaleMint from the contract, only whitelisted addresses would be able to mint
       const tx = await whitelistContract.presaleMint({
         //value signifies the cost of one crypto dev which is "0.01" eth.
-        //We are parsing '0.01' string to ether using the utils library from ethers.js
+        //We are parsing 0.01 string to ether using the utils library from ethers.js
         value: utils.parseEther("0.01"),
       })
       setLoading(true);
@@ -56,7 +56,7 @@ export default function Home() {
    */
   const publicMint = async () => {
     try {
-      //We need a Signer here since this is a 'write' transaction.
+      //We need a Signer here since this is a write transaction.
       const signer = await getProviderOrSigner(true);
       //Create a new instance of the Contract with a Signer, which allows
       //update methods
@@ -68,7 +68,7 @@ export default function Home() {
       //call the mint from the contract to mint the Crypto Dev
       const tx = await whitelistContract.mint({
       //value signifies the cost of one crypto dev which is "0.01" eth.
-      //We are parsing '0.01' string to ether using the utils library from ethers.js
+      //We are parsing 0.01 string to ether using the utils library from ethers.js
       value: utils.parseEther("0.01"),
     })
       setLoading(true);
@@ -109,7 +109,7 @@ export default function Home() {
    */
   const getProviderOrSigner = async (needSigner = false) => {
     //Connect to Metamask
-    //Since we store 'web3Modal' as a reference, we need to access the 'current' value to get access to the underlying object
+    //Since we store web3Modal as a reference, we need to access the current value to get access to the underlying object
     const provider = await web3ModalRef.current.connect(); // will popup metamask
     const web3Provider = new providers.Web3Provider(provider);
 
@@ -133,7 +133,7 @@ export default function Home() {
 
     const startPresale = async () => {
       try {
-        //We need a Signer here since this is a 'write' transaction.
+        //We need a Signer here since this is a write transaction.
         const signer = await getProviderOrSigner(true);
         //Create a new instance of the Contract with a Signer, which allows
         //update methods
@@ -204,7 +204,7 @@ export default function Home() {
           )
           // call the presaleEnded from the contract
           const _presaleEnded = await nftContract.presaleEnded();
-          //_presaleEnded is a Big Number, so we are using the it(lest than function) instead of '<'
+          //_presaleEnded is a Big Number, so we are using the it(lest than function) instead of <
           //Date.now()/1000 returns the current time in seconds
           //We compare if the _presaleEnded timestamp is less than the current time
           //which means presale has ended
@@ -269,7 +269,7 @@ export default function Home() {
           )
           //call the tokenIds from the contact
           const _tokenIds = await nftContract.tokenIds();
-          //_tokenIds is a 'Big number'. We need to convert the Big Number to a string
+          //_tokenIds is a Big number. We need to convert the Big Number to a string
           setTokenIdsMinted(_tokenIds.toString()); // -> useState
         } catch (err) {
           console.error(err)
@@ -283,8 +283,8 @@ export default function Home() {
   useEffect(() => {
     //if wallet is not connected, create a new instance of Web3Modal and connect the Metamask wallet
     if(!walletConnected) {
-      //Assign the Web3Modal class to the reference object by setting it's 'current' value
-      //The 'current' value is presisted throughout as long as this page is open
+      //Assign the Web3Modal class to the reference object by setting its current value
+      //The current value is presisted throughout as long as this page is open
       web3ModalRef.current =  new Web3Modal({
         network: 'rinkeby',
         provideOptions: {},
@@ -348,7 +348,7 @@ export default function Home() {
       )
     };
 
-    //If connected user is not the owner but presale hasn't started yet, tell them that
+    //If connected user is not the owner but presale hasnt started yet, tell them that
     if (!presaleStarted) {
       return (
         <div>
@@ -357,7 +357,7 @@ export default function Home() {
       );
     }
 
-    //If presale started, but hasn't ended yet, allow for minting during the presale period
+    //If presale started, but hasnt ended yet, allow for minting during the presale period
     if(presaleStarted && !presaleEnded) {
       return (
         <div>
