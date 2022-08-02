@@ -16,3 +16,4 @@ module.exports = {
 };
 
 // Crypto Devs Contract Address: 0xcc91f82f7bBa473cD3aC74f0b1712Ec69a13AE29
+// vercel Crypto Devs Contract Address: 0x65B1721B3838dbC378675064B121f948FcF39730
